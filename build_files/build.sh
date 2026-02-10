@@ -45,8 +45,7 @@ PACKAGES=(
     
     # Shell & Terminal
     foot
-    fish
-    starship
+    fishs
     fastfetch
     btop
     
