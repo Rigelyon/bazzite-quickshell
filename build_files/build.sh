@@ -13,8 +13,7 @@ dnf copr enable -y errornointernet/quickshell
 
 dnf copr enable -y solopasha/hyprland
 
-dnf config-manager --add-repo https://terra.fyralabs.com/terra.repo
-dnf config-manager --set-enabled terra
+curl -Lo /etc/yum.repos.d/terra.repo https://terra.fyralabs.com/terra.repo
 
 ### Install packages
 
@@ -25,6 +24,7 @@ dnf config-manager --set-enabled terra
 
 # this installs a package from fedora repos
 
+# Dependencies for Caelestia
 PACKAGES=(
     # Core Hyprland & Portals
     hyprland
@@ -68,6 +68,8 @@ PACKAGES=(
 
 rpm-ostree install "${PACKAGES[@]}"
 
+dnf5 install -y tmux 
+
 FONT_DIR="/usr/share/fonts/jetbrains-nerd"
 mkdir -p "$FONT_DIR"
 wget -P "$FONT_DIR" https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
@@ -77,9 +79,8 @@ rm "$FONT_DIR/JetBrainsMono.zip"
 # Update cache font sistem
 fc-cache -fv
 
+rm /etc/yum.repos.d/terra.repo
 rpm-ostree cleanup -m
-
-dnf5 install -y tmux 
 
 #### Example for enabling a System Unit File
 
