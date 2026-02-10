@@ -45,7 +45,7 @@ PACKAGES=(
     
     # Shell & Terminal
     foot
-    fishs
+    fish
     fastfetch
     btop
     
