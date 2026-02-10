@@ -68,12 +68,14 @@ PACKAGES=(
 rpm-ostree install "${PACKAGES[@]}"
 
 # Install eza from repo
-echo "Installing eza manually..."
 curl -L "https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz" | tar xz -C /tmp
 mv /tmp/eza /usr/bin/eza
 chmod +x /usr/bin/eza
 ln -sf /usr/bin/eza /usr/bin/exa
 eza --version
+
+curl -sS https://starship.rs/install.sh | sh -s -- -y -b /usr/bin
+
 dnf5 install -y tmux 
 
 FONT_DIR="/usr/share/fonts/jetbrains-nerd"
