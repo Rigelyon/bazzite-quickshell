@@ -13,7 +13,7 @@ dnf copr enable -y errornointernet/quickshell
 
 dnf copr enable -y solopasha/hyprland
 
-curl -Lo /etc/yum.repos.d/terra.repo https://terra.fyralabs.com/terra.repo
+dnf copr enable atim/starship
 
 ### Install packages
 
@@ -48,7 +48,6 @@ PACKAGES=(
     fish
     starship
     fastfetch
-    eza
     btop
     
     # Theme & Appearance
@@ -68,6 +67,13 @@ PACKAGES=(
 
 rpm-ostree install "${PACKAGES[@]}"
 
+# Install eza from repo
+echo "Installing eza manually..."
+curl -L "https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz" | tar xz -C /tmp
+mv /tmp/eza /usr/bin/eza
+chmod +x /usr/bin/eza
+ln -sf /usr/bin/eza /usr/bin/exa
+eza --version
 dnf5 install -y tmux 
 
 FONT_DIR="/usr/share/fonts/jetbrains-nerd"
@@ -79,7 +85,6 @@ rm "$FONT_DIR/JetBrainsMono.zip"
 # Update cache font sistem
 fc-cache -fv
 
-rm /etc/yum.repos.d/terra.repo
 rpm-ostree cleanup -m
 
 #### Example for enabling a System Unit File
