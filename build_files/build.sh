@@ -11,6 +11,11 @@ set -ouex pipefail
 
 dnf copr enable -y errornointernet/quickshell
 
+dnf copr enable -y solopasha/hyprland
+
+dnf config-manager --add-repo https://terra.fyralabs.com/terra.repo
+dnf config-manager --set-enabled terra
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
