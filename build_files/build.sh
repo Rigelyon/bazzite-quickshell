@@ -15,6 +15,7 @@ dnf5 -y copr enable errornointernet/quickshell
 dnf5 -y copr enable solopasha/hyprland
 dnf5 -y copr enable atim/starship
 dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
+dnf5 -y copr enable lihaohong/yazi
 
 ### Install packages
 
@@ -23,13 +24,33 @@ dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
-curl -f https://zed.dev/install.sh | sh
-
 PACKAGES=(
     tmux
     python3-devel
     gcc-c++
     micro
+    zsh
+    yazi
+    ffmpeg-free
+    7zip
+    poppler
+    rust-fd-find
+    ripgrep
+    fzf
+    zoxide
+    r-rsvg
+    file
+    neovim
+    python3-neovim
+    fontawesome-fonts-all
+    google-noto-color-emoji-fonts
+    google-noto-emoji-fonts
+    polkit-gnome
+    pavucontrol
+    thunar
+    thunar-archive-plugin
+    file-roller
+    imv
 
     ## app2unit dependencies
     dash
@@ -139,7 +160,6 @@ cp completions/caelestia.fish /usr/share/fish/vendor_completions.d/
 cd /
 rm -rf /tmp/caelestia-cli
 
-# --- INSTALL CAELESTIA SHELL (NEW) ---
 echo "Installing caelestia-shell..."
 mkdir -p /tmp/caelestia-shell
 cd /tmp/caelestia-shell
@@ -155,10 +175,15 @@ curl -L "https://github.com/eza-community/eza/releases/latest/download/eza_x86_6
 mv /tmp/eza /usr/bin/eza
 chmod +x /usr/bin/eza
 ln -sf /usr/bin/eza /usr/bin/exa
-eza --version
 
 echo "Installing starship"
 curl -sS https://starship.rs/install.sh | sh -s -- -y -b /usr/bin
+
+echo "Installing Zed Editor..."
+curl -L "https://github.com/zed-industries/zed/releases/latest/download/zed-linux-x86_64.tar.gz" | tar xz -C /tmp
+install -Dm755 /tmp/zed-linux-x86_64/bin/zed /usr/bin/zed
+cp -r /tmp/zed-linux-x86_64/share/* /usr/share/
+rm -rf /tmp/zed-linux-x86_64
 
 echo "Installing Caelestia Fonts..."
 FONT_DIR="/usr/share/fonts/caelestia"
@@ -169,7 +194,7 @@ unzip -o /tmp/CascadiaCode.zip -d "$FONT_DIR"
 rm /tmp/CascadiaCode.zip
 
 echo "Installing fonts"
-FONT_DIR="/usr/share/fonts/jetbrains-nerd"
+FONT_DIR="/usr/share/fonts/JetBrainsMonoNerdFont"
 mkdir -p "$FONT_DIR"
 wget -P "$FONT_DIR" https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
 unzip -o "$FONT_DIR/JetBrainsMono.zip" -d "$FONT_DIR"
