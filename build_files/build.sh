@@ -111,6 +111,9 @@ PACKAGES=(
     ImageMagick
     accountsservice
     libqalculate
+    libqalculate-devel
+    NetworkManager-libnm-devel
+    bluez-libs-devel
     qt6-qtbase
     qt6-qtdeclarative
     qt6-qtsvg
