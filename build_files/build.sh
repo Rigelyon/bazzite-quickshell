@@ -75,6 +75,9 @@ rpm-ostree install "${PACKAGES[@]}"
 # chmod +x /usr/bin/sass
 # rm -rf /tmp/dart-sass
 # sass --version
+echo "Linking sassc to sass..."
+ln -sf /usr/bin/sassc /usr/bin/sass
+sass --version
 
 echo "Installing App2Unit"
 git clone --depth=1 https://github.com/Vladimir-csp/app2unit.git /tmp/app2unit
