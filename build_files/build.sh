@@ -24,7 +24,13 @@ dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 
 PACKAGES=(
     tmux
-    scdoc
+
+    ## app2unit dependencies
+    dash                
+    desktop-file-utils
+    scdoc               
+    xdg-utils
+
     ## Caelestia dependencies
     hyprland
     xdg-desktop-portal-hyprland
@@ -74,11 +80,22 @@ echo "Linking sassc to sass..."
 ln -sf /usr/bin/sassc /usr/bin/sass
 sass --version
 
+echo "Installing xdg-terminal-exec..."
+git clone --depth=1 https://github.com/Vladimir-csp/xdg-terminal-exec.git /tmp/xdg-terminal-exec
+cd /tmp/xdg-terminal-exec
+make
+install -Dm755 xdg-terminal-exec /usr/bin/xdg-terminal-exec
+install -Dm644 xdg-terminal-exec.1 /usr/share/man/man1/xdg-terminal-exec.1
+cd /
+rm -rf /tmp/xdg-terminal-exec
+
+
 echo "Installing App2Unit"
 git clone --depth=1 https://github.com/Vladimir-csp/app2unit.git /tmp/app2unit
 cd /tmp/app2unit
 make
-make install PREFIX=/usr
+install -Dm755 app2unit /usr/bin/app2unit
+install -Dm644 app2unit.1.gz /usr/share/man/man1/app2unit.1.gz
 cd /
 rm -rf /tmp/app2unit
 
