@@ -9,13 +9,10 @@ set -ouex pipefail
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-dnf copr enable -y errornointernet/quickshell
-
-dnf copr enable -y solopasha/hyprland
-
-dnf copr enable atim/starship
-
-dnf copr enable brycensranch/gpu-screen-recorder-git
+dnf5 -y copr enable errornointernet/quickshell
+dnf5 -y copr enable solopasha/hyprland
+dnf5 -y copr enable atim/starship
+dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 
 ### Install packages
 
@@ -25,11 +22,8 @@ dnf copr enable brycensranch/gpu-screen-recorder-git
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 
-dnf5 install -y tmux 
-
-brew install sass/sass/sass # Caelestia cli dependency
-
 PACKAGES=(
+    tmux
     ## Caelestia dependencies
     hyprland
     xdg-desktop-portal-hyprland
@@ -73,6 +67,14 @@ PACKAGES=(
 
 rpm-ostree install "${PACKAGES[@]}"
 
+
+echo "Installing Dart Sass" # Caelestia cli dependency
+curl -L "https://github.com/sass/dart-sass/releases/download/1.71.1/dart-sass-1.71.1-linux-x64.tar.gz" | tar xz -C /tmp
+mv /tmp/dart-sass/sass /usr/bin/sass
+chmod +x /usr/bin/sass
+rm -rf /tmp/dart-sass
+sass --version
+
 echo "Installing App2Unit"
 git clone --depth=1 https://github.com/Vladimir-csp/app2unit.git /tmp/app2unit
 cd /tmp/app2unit
@@ -104,7 +106,7 @@ eza --version
 echo "Installing starship"
 curl -sS https://starship.rs/install.sh | sh -s -- -y -b /usr/bin
 
-echo "Installing font"s
+echo "Installing fonts"
 FONT_DIR="/usr/share/fonts/jetbrains-nerd"
 mkdir -p "$FONT_DIR"
 wget -P "$FONT_DIR" https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
@@ -115,6 +117,7 @@ rm "$FONT_DIR/JetBrainsMono.zip"
 fc-cache -fv
 
 chmod -R a+r /usr/lib/python*/site-packages/
+
 rpm-ostree cleanup -m
 
 #### Example for enabling a System Unit File
