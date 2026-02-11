@@ -161,7 +161,7 @@ rm -rf /tmp/caelestia-cli
 echo "Installing caelestia-shell..."
 mkdir -p /tmp/caelestia-shell
 cd /tmp/caelestia-shell
-git clone https://github.com/Rigelyon/caelestia-shell.git .
+git clone https://github.com/caelestia-dots/shell.git .
 cmake -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
 cmake --build build
 cmake --install build
