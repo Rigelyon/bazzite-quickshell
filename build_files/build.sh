@@ -24,6 +24,8 @@ dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 
 PACKAGES=(
     tmux
+    python3-devel
+    gcc-c++
 
     ## app2unit dependencies
     dash                
