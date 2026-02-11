@@ -2,6 +2,8 @@
 
 set -ouex pipefail
 
+export PIP_ROOT_USER_ACTION=ignore
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
@@ -21,16 +23,18 @@ dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
+curl -f https://zed.dev/install.sh | sh
 
 PACKAGES=(
     tmux
     python3-devel
     gcc-c++
+    micro
 
     ## app2unit dependencies
-    dash                
+    dash
     desktop-file-utils
-    scdoc               
+    scdoc
     xdg-utils
 
     ## Caelestia dependencies
@@ -73,6 +77,27 @@ PACKAGES=(
     hatch
     python-hatch-vcs
     sassc
+
+    ## Caelestia shell dependencies
+    cmake
+    ninja-build
+    brightnessctl
+    ddcutil
+    lm_sensors
+    cava
+    networkmanager
+    power-profiles-daemon
+    bluez
+    bluez-tools
+    imagemagick
+    accountsservice
+    libqalculate
+    qt6-qtbase
+    qt6-qtdeclarative
+    qt6-qtsvg
+    qt6-qt5compat
+    qt6-qtmultimedia
+    qt6-qtimageformats
 )
 
 rpm-ostree install "${PACKAGES[@]}"
@@ -114,6 +139,17 @@ cp completions/caelestia.fish /usr/share/fish/vendor_completions.d/
 cd /
 rm -rf /tmp/caelestia-cli
 
+# --- INSTALL CAELESTIA SHELL (NEW) ---
+echo "Installing caelestia-shell..."
+mkdir -p /tmp/caelestia-shell
+cd /tmp/caelestia-shell
+git clone https://github.com/Rigelyon/caelestia-shell.git .
+cmake -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+cmake --install build
+cd /
+rm -rf /tmp/caelestia-shell
+
 echo "Installing eza"
 curl -L "https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz" | tar xz -C /tmp
 mv /tmp/eza /usr/bin/eza
@@ -123,6 +159,14 @@ eza --version
 
 echo "Installing starship"
 curl -sS https://starship.rs/install.sh | sh -s -- -y -b /usr/bin
+
+echo "Installing Caelestia Fonts..."
+FONT_DIR="/usr/share/fonts/caelestia"
+mkdir -p "$FONT_DIR"
+wget -O "$FONT_DIR/MaterialSymbolsRounded.ttf" "https://github.com/google/material-design-icons/raw/master/variablefont/MaterialSymbolsRounded%5BFILL,GRAD,opsz,wght%5D.ttf"
+wget -P /tmp https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip
+unzip -o /tmp/CascadiaCode.zip -d "$FONT_DIR"
+rm /tmp/CascadiaCode.zip
 
 echo "Installing fonts"
 FONT_DIR="/usr/share/fonts/jetbrains-nerd"
