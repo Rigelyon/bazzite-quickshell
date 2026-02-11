@@ -108,7 +108,7 @@ cd /tmp/caelestia-cli
 git clone https://github.com/caelestia-dots/cli.git
 cd cli
 python3 -m build --wheel --no-isolation
-python3 -m installer dist/*.whl --destdir=/
+pip install --prefix=/usr --no-deps --force-reinstall dist/*.whl
 mkdir -p /usr/share/fish/vendor_completions.d/
 cp completions/caelestia.fish /usr/share/fish/vendor_completions.d/
 cd /
