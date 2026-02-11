@@ -32,7 +32,6 @@ PACKAGES=(
     micro
     zsh
     yazi
-    ffmpeg-free
     7zip
     poppler
     fd-find
@@ -107,7 +106,6 @@ PACKAGES=(
     ddcutil
     lm_sensors
     cava
-    power-profiles-daemon
     bluez
     bluez-tools
     ImageMagick
