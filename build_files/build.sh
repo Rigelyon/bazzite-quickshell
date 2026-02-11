@@ -117,6 +117,10 @@ PACKAGES=(
     qt6-qt5compat
     qt6-qtmultimedia
     qt6-qtimageformats
+    qt6-qtbase-devel
+    qt6-qtdeclarative-devel
+    qt6-qtsvg-devel
+    qt6-qt5compat-devel
 )
 
 rpm-ostree install "${PACKAGES[@]}"
