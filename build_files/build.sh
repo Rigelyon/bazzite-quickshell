@@ -16,6 +16,7 @@ dnf5 -y copr enable solopasha/hyprland
 dnf5 -y copr enable atim/starship
 dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 dnf5 -y copr enable lihaohong/yazi
+dnf5 -y copr enable dejan/lazygit
 
 ### Install packages
 
@@ -34,23 +35,23 @@ PACKAGES=(
     ffmpeg-free
     7zip
     poppler
-    rust-fd-find
+    fd-find
     ripgrep
     fzf
     zoxide
-    r-rsvg
+    R-rsvg
     file
     neovim
     python3-neovim
     fontawesome-fonts-all
     google-noto-color-emoji-fonts
     google-noto-emoji-fonts
-    polkit-gnome
     pavucontrol
     thunar
     thunar-archive-plugin
     file-roller
     imv
+    lazygit
 
     ## app2unit dependencies
     dash
@@ -106,11 +107,10 @@ PACKAGES=(
     ddcutil
     lm_sensors
     cava
-    networkmanager
     power-profiles-daemon
     bluez
     bluez-tools
-    imagemagick
+    ImageMagick
     accountsservice
     libqalculate
     qt6-qtbase
