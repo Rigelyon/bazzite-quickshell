@@ -63,17 +63,18 @@ PACKAGES=(
     python-installer
     hatch
     python-hatch-vcs
+    sassc
 )
 
 rpm-ostree install "${PACKAGES[@]}"
 
 
-echo "Installing Dart Sass" # Caelestia cli dependency
-curl -L "https://github.com/sass/dart-sass/releases/download/1.71.1/dart-sass-1.71.1-linux-x64.tar.gz" | tar xz -C /tmp
-mv /tmp/dart-sass/sass /usr/bin/sass
-chmod +x /usr/bin/sass
-rm -rf /tmp/dart-sass
-sass --version
+# echo "Installing Dart Sass" # Caelestia cli dependency
+# curl -L "https://github.com/sass/dart-sass/releases/download/1.71.1/dart-sass-1.71.1-linux-x64.tar.gz" | tar xz -C /tmp
+# mv /tmp/dart-sass/sass /usr/bin/sass
+# chmod +x /usr/bin/sass
+# rm -rf /tmp/dart-sass
+# sass --version
 
 echo "Installing App2Unit"
 git clone --depth=1 https://github.com/Vladimir-csp/app2unit.git /tmp/app2unit
