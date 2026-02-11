@@ -70,6 +70,7 @@ PACKAGES=(
     jq
     wireplumber
     pipewire-utils
+    pipewire-devel
     foot
     fish
     fastfetch
