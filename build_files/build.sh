@@ -24,6 +24,7 @@ dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 
 PACKAGES=(
     tmux
+    scdoc
     ## Caelestia dependencies
     hyprland
     xdg-desktop-portal-hyprland
@@ -69,12 +70,6 @@ PACKAGES=(
 rpm-ostree install "${PACKAGES[@]}"
 
 
-# echo "Installing Dart Sass" # Caelestia cli dependency
-# curl -L "https://github.com/sass/dart-sass/releases/download/1.71.1/dart-sass-1.71.1-linux-x64.tar.gz" | tar xz -C /tmp
-# mv /tmp/dart-sass/sass /usr/bin/sass
-# chmod +x /usr/bin/sass
-# rm -rf /tmp/dart-sass
-# sass --version
 echo "Linking sassc to sass..."
 ln -sf /usr/bin/sassc /usr/bin/sass
 sass --version
