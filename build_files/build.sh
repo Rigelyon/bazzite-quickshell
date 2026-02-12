@@ -11,6 +11,8 @@ export PIP_ROOT_USER_ACTION=ignore
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
+dnf5 -y copr enable ublue-os/staging
+
 dnf5 -y copr enable errornointernet/quickshell
 dnf5 -y copr enable solopasha/hyprland
 dnf5 -y copr enable atim/starship
@@ -24,15 +26,6 @@ dnf5 -y copr enable dejan/lazygit
 # RPMfusion repos are available by default in ublue main images
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
-
-echo "Swapping PipeWire to upstream Fedora version..."
-rpm-ostree override replace --experimental --from repo=updates \
-    pipewire \
-    pipewire-libs \
-    pipewire-pulseaudio \
-    pipewire-utils \
-    pipewire-jack-audio-connection-kit \
-    pipewire-alsa
 
 PACKAGES=(
     tmux
