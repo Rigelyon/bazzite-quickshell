@@ -11,8 +11,6 @@ export PIP_ROOT_USER_ACTION=ignore
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-dnf5 -y copr enable ublue-os/staging
-
 dnf5 -y copr enable errornointernet/quickshell
 dnf5 -y copr enable solopasha/hyprland
 dnf5 -y copr enable atim/starship
@@ -72,7 +70,7 @@ PACKAGES=(
     jq
     wireplumber
     pipewire-utils
-    pipewire-devel
+    # pipewire-devel
     foot
     fish
     fastfetch
@@ -103,8 +101,8 @@ PACKAGES=(
     sassc
 
     ## Caelestia shell dependencies
-    cmake
-    ninja-build
+    # cmake
+    # ninja-build
     brightnessctl
     ddcutil
     lm_sensors
@@ -165,15 +163,15 @@ cp completions/caelestia.fish /usr/share/fish/vendor_completions.d/
 cd /
 rm -rf /tmp/caelestia-cli
 
-echo "Installing caelestia-shell..."
-mkdir -p /tmp/caelestia-shell
-cd /tmp/caelestia-shell
-git clone https://github.com/caelestia-dots/shell.git .
-cmake -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-cmake --install build
-cd /
-rm -rf /tmp/caelestia-shell
+# echo "Installing caelestia-shell..."
+# mkdir -p /tmp/caelestia-shell
+# cd /tmp/caelestia-shell
+# git clone https://github.com/caelestia-dots/shell.git .
+# cmake -B build -G Ninja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
+# cmake --build build
+# cmake --install build
+# cd /
+# rm -rf /tmp/caelestia-shell
 
 echo "Installing eza"
 curl -L "https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz" | tar xz -C /tmp
