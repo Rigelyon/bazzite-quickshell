@@ -51,7 +51,6 @@ PACKAGES=(
     file-roller
     imv
     lazygit
-    zed
 
     ## app2unit dependencies
     dash
