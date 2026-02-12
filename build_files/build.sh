@@ -27,7 +27,12 @@ dnf5 -y copr enable dejan/lazygit
 
 echo "Swapping PipeWire to upstream Fedora version..."
 rpm-ostree override replace --experimental --from repo=updates \
+    pipewire \
     pipewire-libs \
+    pipewire-pulseaudio \
+    pipewire-utils \
+    pipewire-jack-audio-connection-kit \
+    pipewire-alsa
 
 PACKAGES=(
     tmux
