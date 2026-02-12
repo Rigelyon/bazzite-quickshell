@@ -127,6 +127,10 @@ PACKAGES=(
 
 rpm-ostree install "${PACKAGES[@]}"
 
+echo "Swapping PipeWire to upstream Fedora version..."
+rpm-ostree override replace --experimental --from repo=updates \
+    pipewire-libs \
+
 
 echo "Linking sassc to sass..."
 ln -sf /usr/bin/sassc /usr/bin/sass
