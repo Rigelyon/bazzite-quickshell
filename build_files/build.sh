@@ -25,6 +25,10 @@ dnf5 -y copr enable dejan/lazygit
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
+echo "Swapping PipeWire to upstream Fedora version..."
+rpm-ostree override replace --experimental --from repo=updates \
+    pipewire-libs \
+
 PACKAGES=(
     tmux
     python3-devel
@@ -126,11 +130,6 @@ PACKAGES=(
 )
 
 rpm-ostree install "${PACKAGES[@]}"
-
-echo "Swapping PipeWire to upstream Fedora version..."
-rpm-ostree override replace --experimental --from repo=updates \
-    pipewire-libs \
-
 
 echo "Linking sassc to sass..."
 ln -sf /usr/bin/sassc /usr/bin/sass
