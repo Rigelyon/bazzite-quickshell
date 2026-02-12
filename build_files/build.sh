@@ -51,6 +51,7 @@ PACKAGES=(
     file-roller
     imv
     lazygit
+    zed
 
     ## app2unit dependencies
     dash
@@ -181,12 +182,6 @@ ln -sf /usr/bin/eza /usr/bin/exa
 
 echo "Installing starship"
 curl -sS https://starship.rs/install.sh | sh -s -- -y -b /usr/bin
-
-echo "Installing Zed Editor..."
-curl -L "https://github.com/zed-industries/zed/releases/latest/download/zed-linux-x86_64.tar.gz" | tar xz -C /tmp
-install -Dm755 /tmp/zed-linux-x86_64/bin/zed /usr/bin/zed
-cp -r /tmp/zed-linux-x86_64/share/* /usr/share/
-rm -rf /tmp/zed-linux-x86_64
 
 echo "Installing Caelestia Fonts..."
 FONT_DIR="/usr/share/fonts/caelestia"
